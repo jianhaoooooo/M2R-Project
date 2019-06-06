@@ -48,7 +48,7 @@ end
 
 % combining kinetic and potential part together 
 A_sym = Ak_sym + Au_sym;
-A = matlabFunction(A_sym, 'vars', {[u v]}); %converting this into an anonymous function to be used for fminunc
+A = matlabFunction(A_sym, 'vars', {[u v]}); %converting 
 
 
 options = optimoptions('fminunc');
@@ -61,7 +61,7 @@ c = fminunc(@(x) actiongradeval(x, n),[real(c0);imag(c0)]',options);
 %%
 % Newton method:
 c = [zeros((M-N)/2,1);c(1:N);zeros(M-N,1);c(N+1:end);zeros((M-N)/2,1)]; mid = 1 + floor(M/2);
-[G, H] = gradhesseval(c,n,M,w); [L, D] = ldl(H);
+[G, H] = gradhesseval(c,n); [L, D] = ldl(H);
 
 for k = 1:2 % specify the number of iterations for Newton Method
 s = L'\(D\(L\(-G)));
