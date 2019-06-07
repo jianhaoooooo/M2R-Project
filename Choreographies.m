@@ -35,6 +35,7 @@ for j= 1:n-1
     f_j = (sum(a_kj .* u + b_kj .* v))^2 + (sum(a_kj .* v - b_kj .* u))^2;
     tmp = (f_j)^-0.5;
     
+    
     % this part won't evaluate properly
     integral = int(tmp, t, 0, 2*pi);
     
