@@ -13,7 +13,7 @@ k = -((M-1)/2) : ((M-1)/2);
 Ak_uk = 2*sym('pi')*n.*((k+w).^2).*u; 
 Ak_vk = 2*sym('pi')*n.*((k+w).^2).*v;
 grad_Ak = [Ak_uk Ak_vk];
-grad_Ak = subs(grad_Ak, [u v], c); % need to make sure what c actually is, is it [u1 ... uM v1... vM]?
+grad_Ak = subs(grad_Ak, [u v], c); 
 
 %grad potential part
 
@@ -54,7 +54,7 @@ for j=1:n-1 % summation over j
     end
     
     expression_inside = grad_f_j./power_f_j; % transposed grad fj
-    expression_inside = subs(expression_inside, [u v], c); % need to make sure what c actually is, is it [u1 ... uM v1... vM]?
+    expression_inside = subs(expression_inside, [u v], c); % substituting c inside
     integral_part = vpaintegral(expression_inside, t, 0, 2*pi); % int takes extremely long, vpaintegral works quickly but it's numerical integration
     final_expr_j = -(n/4).*integral_part;
     grad_Ap = grad_Ap + final_expr_j; %summation over j via loop
