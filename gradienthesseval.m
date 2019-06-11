@@ -1,6 +1,6 @@
 % c needs to be a 2M vector [u1 u2 .. uM v1 v2 ... vM]
 
-function [G, H] = gradhesseval(c, n, M, w)
+function [G, H] = gradienthesseval(c, n, M, w)
 
 u = c(1:M);
 v = c(M+1:end);
@@ -45,7 +45,7 @@ for j=1:n-1 % summation over j
     integral_part = zeros(2*M, 1);
     for i=1:(2*M)
         integral_part(i) = vpaintegral(expression_inside(i), t, 0, 2*pi);
-        status = [num2str(i*100/(2*M)), '% completed']
+        status = [num2str(i*100/(2*M)), '% completed'];
         disp(status)
     end
     
@@ -87,10 +87,10 @@ if nargout >1
         fj_ul_uk = 2.*(transpose(a_kj) * a_kj + transpose(b_kj) * b_kj);
 
         internal_int1 = (fj_ul_uk .* f_j - (3/2) .* product_fj_ul)./(f_j)^(2.5);
-        tmp = zeros(2*M, 2*M);
+        tmp = zeros(M, M);
         
-        for i=1:(2*M)
-            for j=1:(2*M)
+        for i=1:M
+            for j=1:M
             tmp(i,j) = vpaintegral(internal_int1(i,j), t, 0, 2*pi);
             end
         end
@@ -106,9 +106,9 @@ if nargout >1
 
         internal_int3 = (fj_ul_vk .* f_j - (3/2) .* product_fj_ul_vk)./(f_j)^(2.5);
 
-        tmp3 = zeros(2*M, 2*M);
-        for i=1:(2*M)
-            for j=1:(2*M)
+        tmp3 = zeros(M, M);
+        for i=1:M
+            for j=1:M
             tmp3(i, j) = vpaintegral(internal_int3(i, j), t, 0, 2*pi);
             end
         end

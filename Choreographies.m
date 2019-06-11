@@ -4,7 +4,7 @@
 % if absolute choreography simply set w to 0
 
 % choices of n, N (must be odd!), M, w 
-n = 3; N = 7; M = 145; w=0;
+n = 3; N = 15; M = 145; w=0;
 q0 = chebfun(@(t)cos(t)+1i*sin(2*t), [0 2*pi], N,'trig'); 
 c0 = trigcoeffs(q0);
 
@@ -18,7 +18,7 @@ options.HessUpdate = 'bfgs';
 disp('Obtained symbolic expressions')
 objfunction = @(x) trapzactiongradient(x, A_sym, G_sym, N, c_k);
 [c fval] = fminunc(@(x) objfunction(x),transpose([real(c0);imag(c0)]),options);
-cb_bfgs = c; Ab_bfgs = fval
+c_bfgs = c; A_bfgs = fval
 
 %%
 % Newton method:

@@ -1,4 +1,4 @@
-function [A_sym G_sym, ck] = actiongradeval(n, N, w)
+function [A_sym G_sym, ck] = actiongradient(n, N, w)
     syms(sym('u', [1 N]));
     u = (sym('u',[1 N]));
     syms(sym('v', [1 N]));

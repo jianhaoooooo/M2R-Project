@@ -1,4 +1,4 @@
-function [A G] = trapzactiongrade(x, A_sym ,G_sym, N, ck)
+function [A G] = trapzactiongradient(x, A_sym ,G_sym, N, ck)
     disp('Optimizing...')
     %syms(sym('u', [1 N]));
     %u = (sym('u',[1 N]));
