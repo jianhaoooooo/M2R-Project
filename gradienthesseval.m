@@ -89,10 +89,13 @@ if nargout >1
         internal_int1 = (fj_ul_uk .* f_j - (3/2) .* product_fj_ul)./(f_j)^(2.5);
         tmp = zeros(M, M);
         
+        disp('Starting integration for equation (7.12) for ul uk')
         for i=1:M
             for j=1:M
             tmp(i,j) = vpaintegral(internal_int1(i,j), t, 0, 2*pi);
             end
+            status = [num2str(i*100/(M)), '% completed'];
+            disp(status)
         end
         
         Au_ul_uk = Au_ul_uk - n/4 .* tmp; 
@@ -107,10 +110,13 @@ if nargout >1
         internal_int3 = (fj_ul_vk .* f_j - (3/2) .* product_fj_ul_vk)./(f_j)^(2.5);
 
         tmp3 = zeros(M, M);
+        disp('Starting integration for equation (7.12) for ul vk')
         for i=1:M
             for j=1:M
             tmp3(i, j) = vpaintegral(internal_int3(i, j), t, 0, 2*pi);
-            end
+            end   
+            status = [num2str(i*100/(M)), '% completed'];
+            disp(status)
         end
         Au_ul_vk = Au_ul_vk - n/4 .* tmp3;
     end
