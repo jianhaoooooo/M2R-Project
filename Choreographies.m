@@ -41,8 +41,17 @@ end
 
 %%
 % Constructing choreography
-c = c(1:M) + 1i*c(M+1:2*M);
-q = chebfun(c,[0 2*pi],'coeffs','trig');
+%c = c(1:M) + 1i*c(M+1:2*M);
+%q = chebfun(c,[0 2*pi],'coeffs','trig');
 
+N=55
+c = c_bfgs(1:N) + 1i*c_bfgs(N+1:2*N);
+t = linspace(0, 2*pi);
+fnew = 0
+for k=1:N
+    tmp = c(k)*exp(1i*(k-((N+1)/2))*t);
+    fnew = fnew + tmp
+end
+plot(fnew)
 
 

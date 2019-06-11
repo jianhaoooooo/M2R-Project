@@ -13,8 +13,8 @@ function [A_sym G_sym, ck] = actiongradient(n, N, w)
 
     Au_sym = 0;
     
-    P = 30;
-    p = 1:30;
+    P = 40;
+    p = 1:40;
     for j= 1:n-1                                                                                                                                
         syms t real
         a_kj = (1-cos(2*sym('pi')*j.*k./n)).*cos(k.*t) + sin(2*sym('pi').*j.*k./n).*sin(k.*t);
