@@ -23,17 +23,13 @@ c_bfgs = c; A_bfgs = fval;
 %%
 % Newton method:
 c = transpose(c);
-newc = [zeros((M-N)/2,1);c(1:N);zeros(M-N,1);c(N+1:end);zeros((M-N)/2,1)]; 
+c = [zeros((M-N)/2,1);c(1:N);zeros(M-N,1);c(N+1:end);zeros((M-N)/2,1)]; 
 mid = 1 + floor(M/2);
-newc = transpose(newc);
-[G, H] = gradienthesseval(newc,n,M,w); 
+[G, H] = gradienthesseval(c,n,M,w); 
 [L, D] = ldl(H);
 
 for k = 1:2 % specify the number of iterations for Newton Method
 s = L'\(D\(L\(-G)));
-%tmp1 = L\(-G)
-%tmp2 = D\tmp1
-%s = L'\tmp2
 cnew = newc + [s(1:mid-1);0;s(mid:M+mid-2);0;s(M+mid-1:end)]; 
 c = cnew; 
 G = gradhesseval(c,n,M,w);
