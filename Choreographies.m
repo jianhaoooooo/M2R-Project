@@ -40,6 +40,6 @@ end
 %c = c(1:M) + 1i*c(M+1:2*M);
 %q = chebfun(c,[0 2*pi],'coeffs','trig');
 % input c will be a vector of u1...uk v1... vk
-plot_choreo(N, c)
+plot_choreo(n, N, c)
 
 
