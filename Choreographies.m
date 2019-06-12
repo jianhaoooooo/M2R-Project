@@ -4,7 +4,7 @@
 % if absolute choreography simply set w to 0
 
 % choices of n, N (must be odd!), M, w 
-n = 3; N = 9; M = 15; w=0;
+n = 3; N = 5; M = 15; w=0;
 q0 = chebfun(@(t)cos(t)+1i*sin(2*t), [0 2*pi], N,'trig'); 
 c0 = trigcoeffs(q0);
 
@@ -22,7 +22,7 @@ c_bfgs = c; A_bfgs = fval;
 
 %%
 % Newton method:
-c = transpose(c);
+c = reshape(c, [2*N, 1]);
 c = [zeros((M-N)/2,1);c(1:N);zeros(M-N,1);c(N+1:end);zeros((M-N)/2,1)]; 
 mid = 1 + floor(M/2);
 [G, H] = gradienthesseval(c,n,M,w); 
@@ -37,8 +37,6 @@ end
 
 %%
 % Constructing choreography
-%c = c(1:M) + 1i*c(M+1:2*M);
-%q = chebfun(c,[0 2*pi],'coeffs','trig');
 % input c will be a vector of u1...uk v1... vk
 plot_choreo(n, N, c)
 
