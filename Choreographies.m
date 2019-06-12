@@ -30,9 +30,8 @@ mid = 1 + floor(M/2);
 
 for k = 1:2 % specify the number of iterations for Newton Method
 s = L'\(D\(L\(-G)));
-cnew = newc + [s(1:mid-1);0;s(mid:M+mid-2);0;s(M+mid-1:end)]; 
-c = cnew; 
-G = gradhesseval(c,n,M,w);
+new_c = c + [s(1:mid-1);0;s(mid:M+mid-2);0;s(M+mid-1:end)]; 
+G = gradhesseval(new_c,n,M,w);
 end
 
 %%
