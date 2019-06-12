@@ -74,11 +74,6 @@ function [A_sym G_sym, ck] = actiongradient(n, N, w)
         trapz_integral = subs(expression_inside, t, 2*pi.*p./P);
         integral_part = sum(trapz_integral, 2);
         
-        %for i=1:(2*N)
-            %integral_part(i) = vpaintegral(expression_inside(i), t, 0, 2*pi);
-            %status = [num2str(i),'/',num2str(2*N), ' evaluated'];
-            %disp(status)
-        %end
         disp('Done')
         final_expr_j = -((n*pi)/(2*P)).*integral_part;
         grad_Ap = grad_Ap + final_expr_j; %summation over j via loop
