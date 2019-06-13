@@ -14,9 +14,9 @@ options.GradObj = 'on';
 options.Algorithm = 'quasi-newton';
 options.HessUpdate = 'bfgs';
 
-[A_sym ck G_sym] = actiongradient(n, N, w);
+[A_sym ck G_sym] = symactiongradient(n, N, w);
 disp('Obtained symbolic expressions')
-objfunction = @(x) trapzactiongradient(x, A_sym, G_sym, ck);
+objfunction = @(x) actiongradient(x, A_sym, G_sym, ck);
 [c fval] = fminunc(@(x) objfunction(x),transpose([real(c0);imag(c0)]),options);
 c_bfgs = c; A_bfgs = fval;
 
@@ -36,8 +36,8 @@ for k = 1:2 % specify the number of iterations for Newton Method
 end
 
 c_newton = transpose(c);
-[A_sym_newton ck] = actiongradient(n, M, w);
-A_newton = trapzactiongradient(c_newton, A_sym_newton, 0, ck) 
+[A_sym_newton ck] = symactiongradient(n, M, w);
+A_newton = actiongradient(c_newton, A_sym_newton, 0, ck) 
 %%
 % Constructing choreography
 % input c will be a vector of u1...uk v1... vk
