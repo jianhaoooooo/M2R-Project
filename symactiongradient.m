@@ -13,8 +13,8 @@ function [A_sym ck G_sym] = symactiongradient(n, N, w)
 
     Au_sym = 0;
     
-    P = 40;
-    p = 1:40;
+    P = 50;
+    p = 1:50;
     for j= 1:n-1                                                                                                                                
         syms t real
         a_kj = (1-cos(2*sym('pi')*j.*k./n)).*cos(k.*t) + sin(2*sym('pi').*j.*k./n).*sin(k.*t);
@@ -74,6 +74,7 @@ function [A_sym ck G_sym] = symactiongradient(n, N, w)
             disp('Evaluating integral for gradient')
             trapz_integral = subs(expression_inside, t, 2*pi.*p./P);
             integral_part = sum(trapz_integral, 2);
+
 
             disp('Done')
             final_expr_j = -((n*pi)/(2*P)).*integral_part;
