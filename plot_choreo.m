@@ -8,10 +8,13 @@ function graph = plot_choreo(n, N, c)
     choreo_graph = subs(choreo, t, tp);
     
     dots = linspace(0, 2*pi*(n-1)/n, n);
-    eq_points = double(subs(choreo, t, dots(1:3)));
+    eq_points = double(subs(choreo, t, dots(1:n)));
     
-    plot(choreo_graph, '-', 'LineWidth', 1.5)
+    set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 9])
+    plot(choreo_graph, '-', 'LineWidth', 9)
+    axis([-1.5 1.5 -0.75 0.75])
+    set(gca,'FontSize',60)
     hold on
-    plot(eq_points, '.', 'MarkerSize', 30)
+    plot(eq_points, '.', 'MarkerSize', 130)
     hold off
 end

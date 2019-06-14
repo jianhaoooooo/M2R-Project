@@ -4,8 +4,8 @@
 % if absolute choreography simply set w to 0
 
 % choices of n, N (must be odd!), M, w 
-n = 3; N = 29; M = 39; w=0;
-q0 = chebfun(@(t)cos(t)+1i*sin(2*t), [0 2*pi], N,'trig'); 
+n = 4; N = 35; M = 55; w=0;
+q0 = chebfun(@(t)cos(t)+1i*sin(3*t), [0 2*pi], N,'trig'); 
 c0 = trigcoeffs(q0);
 
 %%
@@ -36,7 +36,7 @@ end
 
 c_newton = transpose(c);
 [A_sym_newton ck] = symactiongradient(n, M, w);
-A_newton = actiongradient(c_newton, A_sym_newton, 0, ck) 
+A_newton = actiongradient(c_newton, A_sym_newton, 0, ck);
 %%
 % Constructing choreography and creating plot
 plot_choreo(n, M, c_newton)
