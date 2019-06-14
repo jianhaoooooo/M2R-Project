@@ -24,23 +24,21 @@ c_bfgs = c; A_bfgs = fval;
 % Newton method:
 c = reshape(c, [2*N, 1]);
 c = [zeros((M-N)/2,1);c(1:N);zeros(M-N,1);c(N+1:end);zeros((M-N)/2,1)]; 
-mid = 1 + floor(M/2);
-[G, H] = gradienthesseval(c,n,M,w); 
+[G, H] = gradienthessian(c,n,M,w); 
 [L, D] = ldl(H);
 
 for k = 1:2 % specify the number of iterations for Newton Method
-    s = L'\(D\(L\(-G)));
-    new_c = c + [s(1:mid-1);0;s(mid:M+mid-2);0;s(M+mid-1:end)]; 
-    c = new_c;
-    G = gradienthesseval(c,n,M,w);
+    s = L'\(D\(L\(-G))); 
+    new_c = c + [s(1:((M-1)/2));0;s(((M+1)/2):((3*M-3)/2));0;s(((3*M-1)/2):end)];
+    c = new_c; 
+    G = gradienthessian(c,n,M,w);
 end
 
 c_newton = transpose(c);
 [A_sym_newton ck] = symactiongradient(n, M, w);
 A_newton = actiongradient(c_newton, A_sym_newton, 0, ck) 
 %%
-% Constructing choreography
-% input c will be a vector of u1...uk v1... vk
+% Constructing choreography and creating plot
 plot_choreo(n, M, c_newton)
 
 

@@ -1,6 +1,6 @@
 % c needs to be a 2M vector [u1 u2 .. uM v1 v2 ... vM]
 
-function [G, H] = gradienthesseval(c, n, M, w)
+function [G, H] = gradienthessian(c, n, M, w)
 c = reshape(c, [1, 2*M]);
 u = c(1:M);
 v = c(M+1:end);
