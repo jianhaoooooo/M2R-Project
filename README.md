@@ -1,4 +1,4 @@
-# M2R-Project
+# Periodic-Solutions-N-Body-Problems
 ## results.mat
 This is just the results computed for A_bfgs and c_bfgs for N=55.
 I saved this because it took me about 8 hours to compute this. We can use this to carry out the computation for the Newton method without going through BFGS again.
